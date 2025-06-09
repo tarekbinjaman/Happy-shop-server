@@ -20,6 +20,11 @@ const userSchema = new Schema({
         type: Boolean,
         default: false
     },
+    number_of_meal_added: {
+        type: Number,
+        default: false
+    },
+    
 });
 
 const userModel = model("user", userSchema)
