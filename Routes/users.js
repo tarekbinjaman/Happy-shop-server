@@ -12,8 +12,8 @@ const User = require('../Models/UserModel');
 
 router.post('/users', async (req, res) => {
     try {
-        const {name, email, isAdmin} = req.body;
-        const newUser = new User({name, email, isAdmin});
+        const {name, email, isAdmin, agree, photoURL} = req.body;
+        const newUser = new User({name, email, isAdmin, agree, photoURL});
         await newUser.save();
         res.status(200).json({
             success: true,

@@ -1,4 +1,5 @@
-const {Schema, model} = require("mongoose");
+const { Schema, model } = require("mongoose");
+const { link } = require("../Routes/users");
 
 const userSchema = new Schema({
     name: {
@@ -24,7 +25,17 @@ const userSchema = new Schema({
         type: Number,
         default: false
     },
-    
+
+    agree: {
+        type: Boolean,
+        default: false
+    },
+    photoURL: {
+        type: String,
+        trim: true
+    }
+
+
 });
 
 const userModel = model("user", userSchema)
