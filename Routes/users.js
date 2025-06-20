@@ -32,8 +32,15 @@ router.post('/users', async (req, res) => {
 // Read
 
 router.get('/users', async (req, res) => {
+    const {email} = req.query;
     try {
-        const users = await User.find();
+        const users = await User.find({email});
+        if(!users) {
+            return res.status(404).json({
+                success: false,
+                message: 'user not found'
+            })
+        }
         res.status(200).json({
             success: true,
             users: users
