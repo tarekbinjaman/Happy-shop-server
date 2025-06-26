@@ -5,6 +5,8 @@ const connectDB = require('./db')
 const users = require('./Routes/users')
 const authRoutes = require('./Routes/auth')
 const tokenRoutes = require('./Routes/token')
+const delteImageRoute = require('./Routes/deleteImage');
+
 
 const PORT = 5000;
 
@@ -27,6 +29,9 @@ app.use('/api', authRoutes)
 
 // users route
 app.use('/api',users)
+
+// image delte
+app.use('/api', delteImageRoute);
 
 app.get('/', (req, res) => {
     console.log("I am inside home page router handler")
