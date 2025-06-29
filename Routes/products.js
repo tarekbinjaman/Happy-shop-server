@@ -1,0 +1,52 @@
+const express = require('express');
+const router = express.Router();
+
+const Products = require('../Models/ProductModel');
+
+// CRUD operation
+
+// create 
+
+router.post('/products', async(req, res) => {
+    try {
+        const data = req.body;
+        const newProduct = new Products(data);
+        await newProduct.save();
+        res.status(200).json({
+            success: true,
+            user: newProduct
+        })
+
+    } catch(err) {
+        console.log('Product creation error', err)
+        res.status(500).json({
+            success: false,
+            message: err.message
+        })
+    }
+})
+
+// read
+
+router.get('/products', async(req, res) => {
+    try {
+        const products = await Products.find();
+        if(!products) {
+            return res.status(404).json({
+                success: false,
+                message: 'products not found'
+            })
+        }
+        res.status(200).json({
+            success: true,
+            products: products
+        });
+    } catch (err) {
+        res.status(500).json({
+            success: false,
+            message: err.message
+        })
+    }
+})
+
+module.exports = router;

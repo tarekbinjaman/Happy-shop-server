@@ -1,7 +1,7 @@
+const { Schema } = require("mongoose");
 const { model } = require("mongoose");
-const { schema } = require("./UserModel");
 
-const productSchema = new schema({
+const productSchema = new Schema({
     title: {
         type: String,
         required: true,
@@ -14,23 +14,23 @@ const productSchema = new schema({
         trim: true
     },
     size: {
-        type: String,
+        type: [String],
         required: true
     },
     price: {
-        type: Boolean,
+        type: Number,
         required: true
     },
     discount: {
-        type: Boolean,
+        type: Number,
         required: true
     },
     finalPrice:{
-        type: Boolean,
+        type: Number,
         required: true
     },
-    image: {
-        type: String,
+    images: {
+        type: [String],
         required: true
     },
     gender: {
@@ -38,7 +38,7 @@ const productSchema = new schema({
         required: true
     },
     color: {
-        type: String
+        type: [String]
     }
 })
 
