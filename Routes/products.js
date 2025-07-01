@@ -24,7 +24,7 @@ router.post('/products', async(req, res) => {
             message: err.message
         })
     }
-})
+});
 
 // read
 
@@ -46,6 +46,35 @@ router.get('/products', async(req, res) => {
             success: false,
             message: err.message
         })
+    }
+});
+
+// update
+router.put('/products/:id', async(req, res) => {
+    try{
+        const id = req.params.id;
+        const updateData = req.body;
+        const updatedProduct = await Products.findByIdAndUpdate(id, updateData, {
+            new: true, // return updated document
+            runValidators: true // validate based on schema
+        });
+        if(!updatedProduct) {
+            return res.status(404).json({
+                success: false,
+                message: 'Product not found'
+            });
+        }
+        res.status(200).json({
+            success: true,
+            message: 'product updated successfully',
+            product: updatedProduct
+        })
+    } catch (err) {
+        console.error('Update Error', err)
+        res.status(500).json({
+            success: false,
+            message: err.message
+        });
     }
 })
 

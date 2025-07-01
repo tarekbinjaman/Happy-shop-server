@@ -1,5 +1,6 @@
 const { Schema } = require("mongoose");
 const { model } = require("mongoose");
+const { url } = require("../cloudinary");
 
 const productSchema = new Schema({
     title: {
@@ -25,14 +26,16 @@ const productSchema = new Schema({
         type: Number,
         required: true
     },
-    finalPrice:{
+    finalPrice: {
         type: Number,
         required: true
     },
-    images: {
-        type: [String],
-        required: true
-    },
+    images: [
+        {
+            url: { type: String, required: true },
+            public_id: { type: String, required: true }
+        }
+    ],
     gender: {
         type: String,
         required: true
