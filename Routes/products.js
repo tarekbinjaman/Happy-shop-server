@@ -30,7 +30,17 @@ router.post('/products', async(req, res) => {
 
 router.get('/products', async(req, res) => {
     try {
-        const products = await Products.find();
+        const query = {};
+        if(req.query.minPrice || req.query.maxPrice) {
+            query.price = {};
+            if(req.query.minPrice) {
+                query.price.$gte = +req.query.minPrice;
+            };
+            if(req.query.maxPrice) {
+                query.price.$lte = +req.query.maxPrice
+            };
+        }
+        const products = await Products.find(query);
         if(!products) {
             return res.status(404).json({
                 success: false,
