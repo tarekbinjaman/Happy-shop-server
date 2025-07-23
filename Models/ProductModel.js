@@ -48,6 +48,18 @@ const productSchema = new Schema({
         default: 0,
         min: 0,
         max: 5
+    },
+    brand: {
+        type: String,
+        required: true
+    },
+    fitType: {
+        type: String,
+        required: true
+    },
+    materials: {
+        type: String,
+        required: true
     }
 })
 
