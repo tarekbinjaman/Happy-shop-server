@@ -44,6 +44,12 @@ router.get('/products', async (req, res) => {
         if(req.query.brand) {
             query.brand = {$in: req.query.brand.split(',')};
         }
+        if(req.query.fitType) {
+            query.fitType = {$in: req.query.fitType.split(',')};
+        }
+        if(req.query.materials) {
+            query.materials = {$in: req.query.materials.split(',')};
+        }
         const products = await Products.find(query);
         if (!products) {
             return res.status(404).json({
