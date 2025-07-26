@@ -38,6 +38,12 @@ router.get('/products', async (req, res) => {
             if (!isNaN(min)) query.finalPrice.$gte = min;
             if (!isNaN(max)) query.finalPrice.$lte = max;
         }
+        if(req.query.gender) {
+            query.gender = {$in: req.query.gender.split(',')};
+        }
+        if(req.query.brand) {
+            query.brand = {$in: req.query.brand.split(',')};
+        }
         const products = await Products.find(query);
         if (!products) {
             return res.status(404).json({
