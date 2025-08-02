@@ -38,6 +38,9 @@ router.get('/products', async (req, res) => {
             if (!isNaN(min)) query.finalPrice.$gte = min;
             if (!isNaN(max)) query.finalPrice.$lte = max;
         }
+        if(req.query.category) {
+            query.category = req.query.category;
+        }
         if(req.query.gender) {
             query.gender = {$in: req.query.gender.split(',')};
         }

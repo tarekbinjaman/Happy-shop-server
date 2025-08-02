@@ -60,6 +60,10 @@ const productSchema = new Schema({
     materials: {
         type: String,
         required: true
+    },
+    category: {
+        type: String,
+        required: true
     }
 })
 
