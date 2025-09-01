@@ -31,6 +31,9 @@ router.post('/products', async (req, res) => {
 router.get('/products', async (req, res) => {
     try {
         const query = {};
+        if(req.query.search) {
+            query.title = {$regex: req.query.search, $options: "i"}
+        }
         if (req.query.minPrice || req.query.maxPrice) {
             query.finalPrice = {};
             const min = parseFloat(req.query.minPrice);
