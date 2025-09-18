@@ -29,9 +29,13 @@ router.post('/cartList', async(req, res) => {
 
 router.get('/cartList', async(req, res) => {
     try {
-        const cartList = await Carts.find();
+        const {email} = req.query;
+        if(!email) {
+            return res.status(200).json({success: false, message: "Email is required"})
+        }
+        const cartList = await Carts.find({userEmail: email});
         if(!cartList || cartList.length === 0) {
-            return res.status(404).json({
+            return res.status(200).json({
                 success: false,
                 message: 'Cart data not found'
             })
@@ -48,5 +52,27 @@ router.get('/cartList', async(req, res) => {
         })
     }
 })
+
+
+router.delete('/cartList/:id', async(req, res) => {
+    try {
+        const id = req.params.id;
+        const deleteProduct = await Carts.findOneAndDelete({_id: id});
+        if(!deleteProduct) {
+            return res.status(404).json({message: "Product not found"});
+        }
+        res.status(200).json({
+            success: true,
+            message: 'Product delete from cart successfully'
+        });
+    } catch (err) {
+        console.error(err.message);
+        res.send(200).json({
+            success: false, 
+            message: 'Product delete from cart failed'
+        })
+    }
+})
+
 
 module.exports = router;
