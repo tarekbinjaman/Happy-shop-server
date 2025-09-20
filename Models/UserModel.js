@@ -21,7 +21,7 @@ const userSchema = new Schema({
         type: Boolean,
         default: false
     },
-    number_of_meal_added: {
+    number_of_Product_added: {
         type: Number,
         default: false
     },
@@ -33,8 +33,12 @@ const userSchema = new Schema({
     photoURL: {
         type: String,
         trim: true
+    },
+    address: {
+        type: String,
+        trim: true,
+        default: ""
     }
-
 
 });
 
