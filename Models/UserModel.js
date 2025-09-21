@@ -34,7 +34,7 @@ const userSchema = new Schema({
         type: String,
         trim: true
     },
-    address: {
+    useraddress: {
         type: String,
         trim: true,
         default: ""

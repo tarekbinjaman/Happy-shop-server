@@ -84,13 +84,13 @@ router.get('/users/:id', async(req, res) => {
 
 router.put('/users/:id', async(req, res) => {
     const {id} = req.params;
-    const {updateData} = req.body;
+    const updateData = req.body;
     try {
-        const updateUser = await User.findByIdAndUpdate(id, {updateData}, {new: true});
+        const updateUser = await User.findByIdAndUpdate(id, updateData, {new: true});
         if(!updateUser) {
-            res.json({
+            return res.status(400).json({
                 message: "User Not Found"
-            })
+            });
         }
         // but if you have update the user successfully
         res.status(200).json({
