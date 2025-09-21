@@ -31,7 +31,7 @@ router.get('/cartList', async(req, res) => {
     try {
         const {email} = req.query;
         if(!email) {
-            return res.status(200).json({success: false, message: "Email is required"})
+            return res.status(400).json({success: false, message: "Email is required"})
         }
         const cartList = await Carts.find({userEmail: email});
         if(!cartList || cartList.length === 0) {
@@ -59,7 +59,7 @@ router.delete('/cartList/:id', async(req, res) => {
         const id = req.params.id;
         const deleteProduct = await Carts.findOneAndDelete({_id: id});
         if(!deleteProduct) {
-            return res.status(404).json({message: "Product not found"});
+            return res.status(400).json({message: "Product not found"});
         }
         res.status(200).json({
             success: true,

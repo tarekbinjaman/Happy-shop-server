@@ -36,7 +36,7 @@ router.get('/users', async (req, res) => {
     try {
         const users = await User.find({email});
         if(!users) {
-            return res.status(404).json({
+            return res.status(200).json({
                 success: false,
                 message: 'user not found'
             })
