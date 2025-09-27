@@ -9,6 +9,7 @@ const delteImageRoute = require('./Routes/deleteImage');
 const products = require('./Routes/products')
 const review = require('./Routes/review')
 const cartList = require('./Routes/Carts')
+const order = require('./Routes/order')
 
 const PORT = 5000;
 
@@ -43,6 +44,9 @@ app.use('/api', review)
 
 // cart route
 app.use('/api', cartList)
+
+// order route
+app.use('/api', order)
 
 app.get('/', (req, res) => {
     console.log("I am inside home page router handler")
