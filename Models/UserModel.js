@@ -36,6 +36,7 @@ const userSchema = new Schema({
   },
   useraddress: [
     {
+      name: {type: String, required: true, default: ""},
       address: { type: String, required: true, default: "" },
       number: { type: Number, required: true, default: 0 },
     },
