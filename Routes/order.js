@@ -27,17 +27,19 @@ router.post("/order", async (req, res) => {
 
 // Read
 
-router.get("/order", async (req, res) => {
+router.get("/order/:email", async (req, res) => {
   try {
-    const { email } = req.query;
+    const { email } = req.params;
 
     if (!email) {
       return res
         .status(400)
         .json({ success: false, message: "Email is required" });
     }
-    const orderData = await order.find({ userEmail: email });
-    if (!order || order.length === 0) {
+    const orderData = await order
+    .findOne({ userEmail: email })
+    .sort({createdAt: -1}); // newest first
+    if (!orderData) {
       return res.status(404).json({
         success: false,
         message: "Order Data not found",

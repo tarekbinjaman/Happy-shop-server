@@ -17,6 +17,7 @@ const orderSchema = new Schema({
     address: {type: String, required: true},
     phone: {type: Number, required: true}
   },
+  totalDiscount: {type: Number, required: true},
   status: {type: String, required: true},
   subTotal: {type: Number, required: true},
   shippingCost: {type: Number, required: true},
