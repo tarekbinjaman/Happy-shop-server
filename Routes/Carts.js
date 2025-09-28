@@ -74,5 +74,30 @@ router.delete('/cartList/:id', async(req, res) => {
     }
 })
 
+router.delete('/cartList/clear/:userEmail', async(req, res) => {
+    try {
+        const {userEmail} = req.params;
+        const result = await Carts.deleteMany({userEmail})
+
+        if(result.deletedCount === 0) {
+            return res.status(404).json({
+                success: false,
+                message: "No cart found for this user"
+            })
+        }
+
+        res.status(200).json({
+            success: true,
+            message: `${result.deletedCount} carts delted successfully`
+        });
+    } catch (err) {
+        console.error(err.message);
+        res.send(200).json({
+            success: false, 
+            message: 'Product delete from cart failed'
+        })
+    }
+})
+
 
 module.exports = router;
