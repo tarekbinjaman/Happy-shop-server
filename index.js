@@ -10,6 +10,7 @@ const products = require('./Routes/products')
 const review = require('./Routes/review')
 const cartList = require('./Routes/Carts')
 const order = require('./Routes/order')
+const wishList = require('./Routes/WishList')
 
 const PORT = 5000;
 
@@ -47,6 +48,9 @@ app.use('/api', cartList)
 
 // order route
 app.use('/api', order)
+
+// wishlist route
+app.use('/api', wishList)
 
 app.get('/', (req, res) => {
     console.log("I am inside home page router handler")
