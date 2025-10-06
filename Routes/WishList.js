@@ -38,7 +38,7 @@ router.get('/wishlist', async(req, res) => {
         }
         const wishlist = await WishList.find({userEmail: email});
         if(!wishlist || wishlist.length === 0) {
-            return res.status(200).json({
+            return res.status(204).json({
                 success: false,
                 message: "WishList not found"
             })
@@ -57,7 +57,7 @@ router.get('/wishlist', async(req, res) => {
 })
 
 
-// DELTE
+// DELETE
 
 router.delete('/wishlist/:id', async(req, res) =>{
     try {
