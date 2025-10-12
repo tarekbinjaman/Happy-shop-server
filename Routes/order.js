@@ -27,9 +27,9 @@ router.post("/order", async (req, res) => {
 
 // Read
 
-router.get("/order/:email", async (req, res) => {
+router.get("/order", async (req, res) => {
   try {
-    const { email } = req.params;
+    const { email } = req.query;
 
     if (!email) {
       return res
@@ -37,7 +37,7 @@ router.get("/order/:email", async (req, res) => {
         .json({ success: false, message: "Email is required" });
     }
     const orderData = await order
-    .findOne({ userEmail: email })
+    .find({ userEmail: email })
     .sort({createdAt: -1}); // newest first
     if (!orderData) {
       return res.status(404).json({
