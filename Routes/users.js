@@ -34,7 +34,12 @@ router.post('/users', async (req, res) => {
 router.get('/users', async (req, res) => {
     const {email} = req.query;
     try {
-        const users = await User.find({email});
+        let users;
+        if(email) {
+         users = await User.find({email});
+        } else {
+            users = await User.find();
+        }
         if(!users) {
             return res.status(200).json({
                 success: false,

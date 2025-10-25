@@ -26,7 +26,7 @@ const userSchema = new Schema({
     default: false,
   },
 
-  agree: {
+  isBlocked: {
     type: Boolean,
     default: false,
   },
