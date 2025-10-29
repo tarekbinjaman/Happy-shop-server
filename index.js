@@ -18,7 +18,9 @@ const PORT = 5000;
 app.use(express.json());
 
 app.use(cors({
-        origin: 'http://localhost:5173',
+        origin: ['http://localhost:5173', 'https://happy12-e0wkbp0ec-tarek-jamans-projects.vercel.app',
+            'https://happy12-three.vercel.app'
+        ],
         credentials: true
     }))
 
