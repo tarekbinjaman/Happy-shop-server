@@ -19,7 +19,7 @@ app.use(express.json());
 
 app.use(cors({
         origin: ['http://localhost:5173', 'https://happy12-e0wkbp0ec-tarek-jamans-projects.vercel.app',
-            'https://happy12-three.vercel.app'
+            'https://happy12-three.vercel.app', 'https://happy12-mu134euu1-tarek-jamans-projects.vercel.app/'
         ],
         credentials: true
     }))
